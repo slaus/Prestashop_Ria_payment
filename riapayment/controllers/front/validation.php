@@ -28,7 +28,7 @@
 /**
  * @since 1.5.0
  */
-class RiaRaymentValidationModuleFrontController extends ModuleFrontController
+class RiaPaymentValidationModuleFrontController extends ModuleFrontController
 {
 	public function postProcess()
 	{

@@ -1,4 +1,4 @@
-{capture name=path}{l s='RiaPayment' mod='riapayment'}{/capture}
+{capture name=path}{l s='Ria' mod='riapayment'}{/capture}
 {if $psversion < '1.6.0.0'}
 {include file="$tpl_dir./breadcrumb.tpl"}
 {/if}
@@ -11,7 +11,7 @@
 	<p class="warning">{l s='Your shopping cart is empty.'}</p>
 {else}
 
-<h3>{l s='WesterUnion' mod='riapayment'}</h3>
+<h3>{l s='Ria' mod='riapayment'}</h3>
 {if $psversion < "1.5.0.0"}
 <form action="{$this_path_ssl}validation.php" method="post">
 {else}
@@ -32,7 +32,7 @@
 <p>
 	-
 	{if $currencies|@count > 1}
-		{l s='We accept several currencies to be sent by western union.' mod='riapayment'}
+		{l s='We accept several currencies to be sent by Ria.' mod='riapayment'}
 		<br /><br />
 		{l s='Choose one of the following:' mod='riapayment'}
 		<select id="currency_payement" name="currency_payement" onchange="setCurrency($('#currency_payement').val());">
@@ -41,12 +41,12 @@
 		{/foreach}
 		</select>
 	{else}
-		{l s='We accept the following currency to be sent by western union:' mod='riapayment'}&nbsp;<b>{$currencies.0.name}</b>
+		{l s='We accept the following currency to be sent by Ria:' mod='riapayment'}&nbsp;<b>{$currencies.0.name}</b>
 		<input type="hidden" name="currency_payement" value="{$currencies.0.id_currency}">
 	{/if}
 </p>
 <p>
-	{l s='Western union account information will be displayed on the next page.' mod='riapayment'}
+	{l s='Ria account information will be displayed on the next page.' mod='riapayment'}
 	<br /><br />
 	<b>{l s='Please confirm your order by clicking \'I confirm my order\'' mod='riapayment'}.</b>
 </p>

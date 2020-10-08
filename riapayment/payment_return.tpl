@@ -7,9 +7,9 @@
 		<br /><br />
 		- {l s='Address:' mod='riapayment'} <span class="bold">{if $riapaymentDetails}{$riapaymentDetails}{else}___________{/if}</span>
 		<br /><br />
-		- {l s='With the ID (CIF/NIF/DNI):' mod='riapayment'} <span class="bold">{if $riapaymentAddress}{$riapaymentAddress}{else}___________{/if}</span>
+		- {l s='Country:' mod='riapayment'} <span class="bold">{if $riapaymentAddress}{$riapaymentAddress}{else}___________{/if}</span>
 		<br /><br />
-	    - {l s='RiaPayment: ' mod='riapayment'}<a href="http://www.ria.com/" target="_blank">{l s='www.ria.com' mod='riapayment'}</a>
+	    - {l s='Ria: ' mod='riapayment'}<a href="http://www.riamoneytransfer.com/" target="_blank">{l s='www.riamoneytransfer.com' mod='riapayment'}</a>
       	<br /><br />
 	{l s='You can leave message the above information in your order. Or you can contact our' mod='riapayment'} <a href="{$base_dir_ssl}contact-form.php">{l s='customer support' mod='riapayment'}</a>.	</p>
 {else}

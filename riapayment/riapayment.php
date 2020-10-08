@@ -1,13 +1,13 @@
 <?php
 /**
- * 2007-2020 PrestaShop
+ * 2007-2014 PrestaShop
  *
  * NOTICE OF LICENSE
  *
  * No redistribute in other sites, or copy.
  *
- * @author    slaus <mister.slaus@gmail.com>
- * @copyright 2007-2020 Slaus
+ * @author    Slaus <mister.slaus@gmail.com>
+ * @copyright 2020 Slaus
  * @license   http://site404.in.ua
  */
 
@@ -26,7 +26,7 @@ class RiaPayment extends PaymentModule
 	{
 		$this->name = 'riapayment';
 		if(_PS_VERSION_ > '1.4.0.0'){
-					$this->author = 'SLAUS';
+					$this->author = 'Slaus';
 
 		$this->tab = 'payments_gateways';
 		}
@@ -34,7 +34,7 @@ class RiaPayment extends PaymentModule
 		{
 		$this->tab = 'Payment';
 		}
-		$this->version = '1.1.0';
+		$this->version = '2.2.0';
 			if (_PS_VERSION_ > '1.6.0.0')
 			$this->bootstrap = true;
 		$this->currencies = true;
@@ -53,7 +53,7 @@ class RiaPayment extends PaymentModule
 		parent::__construct();
 
 		$this->displayName = $this->l('RiaPayment');
-		$this->description = $this->l('Accept payments by Ria');
+		$this->description = $this->l('Accept payments by RiaPayment');
 		$this->confirmUninstall = $this->l('Are you sure you want to delete your details?');
 		if (!isset($this->owner) || !isset($this->details) || !isset($this->address))
 			$this->warning = $this->l('Account owner and details must be configured in order to use this module correctly');
@@ -108,7 +108,7 @@ class RiaPayment extends PaymentModule
 
 	private function _displayRiaPayment()
 	{
-		$this->_html .= '<img src="../modules/riapayment/riapayment.jpg" style="float:left; margin-right:15px;"><b>'.$this->l('This module allows you to accept payments by Ria.').'</b><br /><br />
+		$this->_html .= '<img src="../modules/riapayment/riapayment.jpg" style="float:left; margin-right:15px;"><b>'.$this->l('This module allows you to accept payments by RiaPayment.').'</b><br /><br />
 		'.$this->l('If the client chooses this payment mode, the order will change its status into a \'Waiting for payment\' status.').'<br />
 		'.$this->l('Therefore, you will need to manually confirm the order as soon as you receive a wire..').'<br /><br /><br />';
 	}
@@ -120,31 +120,42 @@ class RiaPayment extends PaymentModule
 			<fieldset>
 			<legend><img src="../img/admin/contact.gif" />'.$this->l('Contact details').'</legend>
 				<table border="0" width="500" cellpadding="0" cellspacing="0" id="form">
-									<tr><td width="130" style="height: 35px;">'.$this->l('Order id').'</td><td><input type="text" name="state1" value="'.htmlentities(Tools::getValue('state1', $this->state1), ENT_COMPAT, 'UTF-8').'" style="width: 300px;" /></td>
+									<tr><td width="130" style="height: 35px;">'.$this->l('Status ID').'</td><td><input type="text" name="state1" value="'.htmlentities(Tools::getValue('state1', $this->state1), ENT_COMPAT, 'UTF-8').'" style="width: 300px;" /></td>
 
-					<tr><td colspan="2">'.$this->l('Please specify the RIA account details for customers').'.<br /><br /></td></tr>
+					<tr><td colspan="2">'.$this->l('Please specify the Ria account details for customers').'.<br /><br /></td></tr>
 					<tr><td width="130" style="height: 35px;">'.$this->l('Owner name').'</td><td><input type="text" name="owner" value="'.htmlentities(Tools::getValue('owner', $this->owner), ENT_COMPAT, 'UTF-8').'" style="width: 300px;" /></td></tr>
-					<p>'.$this->l('Read the README to get this ID number').'</p>
+					<p>'.$this->l('Ria Payment status ID. When installing this module, the status «Waiting for Ria payment» should be added. If the status has not been created, then create it yourself on the «Statuses» page in the «Orders» section and put its ID number in this field.').'</p>
 					</tr>
 					<tr>
-						<td width="130" style="vertical-align: top;">'.$this->l('Details').'</td>
+						<td width="130" style="vertical-align: top;">'.$this->l('Owner last name').'</td>
 						<td style="padding-bottom:15px;">
 							<textarea name="details" rows="4" cols="53">'.htmlentities(Tools::getValue('details', $this->details), ENT_COMPAT, 'UTF-8').'</textarea>
 							<p>'.$this->l('Such as country, state, postal code and  tel.').'</p>
 						</td>
 					</tr>
 					<tr>
-						<td width="130" style="vertical-align: top;">'.$this->l('CIF/NF/DNI').'</td>
+						<td width="130" style="vertical-align: top;">'.$this->l('Country').'</td>
 						<td style="padding-bottom:15px;">
 							<textarea name="address" rows="4" cols="53">'.htmlentities(Tools::getValue('address', $this->address), ENT_COMPAT, 'UTF-8').'</textarea>
 						</td>
 					</tr>
 					<tr><td colspan="2" align="center"><input class="button" name="btnSubmit" value="'.$this->l('Update settings').'" type="submit" /></td></tr>
 				</table>	
-					
+				 <center><p class="clear">'.$this->l('For a full version of this module, with auto installation, and confirmation when customer make the payment, check RiaPayment+').'</p></center>
+
 			</fieldset>
 		
-		</form>';
+		</form>
+		<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+			<fieldset><legend><img src="'.$this->_path.'logo.gif" alt="" title="" />'.$this->l('Contribute').'</legend>
+				<p class="clear">'.$this->l('You can contribute with a donation if our free modules and themes are usefull for you. Clic on the link and support us!').'</p>
+				<p class="clear">'.$this->l('For more modules & themes visit: www.site404.in.ua').'</p>
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="HMBZNQAHN9UMJ">
+<input type="image" src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/en_US/i/scr/pixel.gif" width="1" height="1">
+	</fieldset>
+</form>';
 	}
 private function _displayInfo()
 	{
@@ -178,28 +189,28 @@ private function _displayInfo()
 						'type'    => 'text',
 						'label'   => $this->l('Status ID'),
 						'name'    => 'state1',
-						'desc'    => $this->l('Create a new status called «Pay via RIA» and get this status ID.'),
+						'desc'    => $this->l('Ria Payment status ID. When installing this module, the status «Waiting for Ria payment» should be added. If the status has not been created, then create it yourself on the «Statuses» page in the «Orders» section and put its ID number in this field.'),
 						
 					),
 					array(
 						'type'    => 'text',
 						'label'   => $this->l('Owner name'),
 						'name'    => 'owner',
-						'desc'    => $this->l('When you enable delete orders, you can delete orders in ORDER TAB with the trash icon'),
+						'desc'    => $this->l('Ria transfer recipient name'),
 						
 					),
 					array(
 						'type'    => 'text',
-						'label'   => $this->l('Details'),
+						'label'   => $this->l('Owner last name'),
 						'name'    => 'details',
-						'desc'    => $this->l('Such as country, state, postal code and  tel.'),
+						'desc'    => $this->l('Surname of the recipient Ria of the transfer'),
 						
 					),
 					array(
 						'type'    => 'text',
-						'label'   => $this->l('CIF/NIF/DNI'),
+						'label'   => $this->l('Country'),
 						'name'    => 'address',
-						'desc'    => $this->l('A identification like passport, ID, etc.'),
+						'desc'    => $this->l('Country of recipient Ria transfer'),
 						
 					),
 				),
